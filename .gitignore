@@ -1,3 +1,13 @@
 /vendor/
 /.idea/
 /.DS_Store
+/.phpunit.cache/
+/.pest/
+/node_modules/
+/public/build/
+/storage/*.key
+/.env
+/.env.*
+!.env.example
+/tmp/
+/coverage/
