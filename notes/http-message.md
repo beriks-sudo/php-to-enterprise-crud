@@ -25,4 +25,11 @@ body
 "limit": "5",
 "page": "2"
 }
-}%  
+}%
+
+список товаров GET    /products     идемпотентна   -> 200 OK
+получение одного товара GET    /products/10  идемпотентна   -> 200 OK или 404 Not Found
+создание товара POST   /products     идемпотентна   -> 201 Created или 422 Unprocessable Content
+полное обновление товара PUT    /products/10  неидемпотентна   -> 200 OK, 404 Not Found или 422 Unprocessable Content
+частичное обновление товара PATCH  /products/10  идемпотентна   -> 200 OK, 404 Not Found или 422 Unprocessable Content
+удаление товара DELETE /products/10  идемпотентна   -> 204 No Content или 404 Not Found
