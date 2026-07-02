@@ -8,7 +8,9 @@ $name = trim($rawName);
 $price = (int) $rawPrice;
 $isActive = (bool) $rawIsActive;
 
-var_dump($name, $price, $isActive);
+var_dump($name);
+var_dump($price);
+var_dump($isActive);
 
 //Преобразуй их:
 //
