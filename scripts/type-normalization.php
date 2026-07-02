@@ -4,9 +4,9 @@ $rawName = "Monitor";
 $rawPrice = "45000";
 $rawIsActive = "1";
 
-$name = trim($rawName);
+$name = trim((string) $rawName);
 $price = (int) $rawPrice;
-$isActive = (bool) $rawIsActive;
+$isActive = $rawIsActive === "1";
 
 var_dump($name);
 var_dump($price);
