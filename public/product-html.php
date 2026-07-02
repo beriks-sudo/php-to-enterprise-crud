@@ -1,15 +1,17 @@
 <?php
-
-$product = require __DIR__ . '/product.php';
-var_dump($product);
-$product = json_decode($product, true);
-var_dump($product);
-$name = $product['name'];
-$price = $product['price'];
-$currency = $product['currency'];
+$productName = "Keyboard";
+$price = 12000;
+$currency = "KZT";
 ?>
 
-<div>
-    <h1><?= $name ?></h1>
-    <p><?= $price ?> <?= $currency ?></p>
-</div>
+<DOCTYPE html>
+ <html>
+ <body>
+ <h1><?= htmlspecialchars($productName, ENT_QUOTES, 'UTF-8') ?></h1>
+ <p>
+     <?= htmlspecialchars($price, ENT_QUOTES, 'UTF-8') ?>
+     <?= htmlspecialchars($currency, ENT_QUOTES, 'UTF-8') ?>
+ </p>
+ </body>
+
+ </html>
