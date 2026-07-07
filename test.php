@@ -1,14 +1,7 @@
 <?php
 
-$ids = [10, 20, 30, 40];
-$targetId = 40;
 
-foreach ($ids as $id) {
-    if ($id !== $targetId) {
-        echo "Not found: " . $id . "\n";
-        continue;
-    }
+$products = ["Keyboard", "Mouse", "Monitor"];
 
-    echo "Found: " . $id . "\n";
-    break;
-}
+echo count($products) . "\n";
+var_dump(in_array("Mouse", $products, true));
