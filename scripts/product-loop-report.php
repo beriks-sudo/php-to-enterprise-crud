@@ -1,6 +1,6 @@
 <?php
 
-$prices = [12000, 7500, 45000, 00000, -100];
+$prices = [12000, 7500, 45000, 0, -100];
 //
 //Нужно:
 //
@@ -13,14 +13,14 @@ $sumValid = 0;
 $invalidCount = 0;
 foreach ($prices as $price) {
 
-    if ($price > 0) {
+    if ($price > 100000) {
+        break;
+    } elseif ($price > 0) {
         echo "Price: " . $price . "\n";
         $sumValid += $price;
-
-    } elseif ($price > 100000) {
-        break;
     } else {
         $invalidCount += 1;
+        continue;
     }
 }
 echo "SumValid: " . $sumValid . "\n";
