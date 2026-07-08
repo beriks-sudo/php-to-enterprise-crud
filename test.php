@@ -1,7 +1,24 @@
 <?php
 
+$products = [
+    [
+        'id' => 1,
+        'name' => 'Keyboard'
+    ],
+    [
+        'id' => 2,
+        'name' => 'Mouse'
+    ],
+];
 
-$products = ["Keyboard", "Mouse", "Monitor"];
+$targetId = 2;
+$foundProduct = null;
 
-echo count($products) . "\n";
-var_dump(in_array("Mouse", $products, true));
+foreach ($products as $product) {
+    if ($product['id'] === $targetId) {
+        $foundProduct = $product;
+        break;
+    }
+}
+
+var_dump($foundProduct);
