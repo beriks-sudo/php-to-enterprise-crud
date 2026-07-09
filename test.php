@@ -1,24 +1,12 @@
 <?php
 
 $products = [
-    [
-        'id' => 1,
-        'name' => 'Keyboard'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Mouse'
-    ],
+    ['id' => 1, 'name' => 'Keyboard', 'is_active' => true],
+    ['id' => 2, 'name' => 'Mouse', 'is_active' => false],
 ];
 
-$targetId = 2;
-$foundProduct = null;
+$activeProducts = array_filter($products, function (array $product): bool {
+    return $product['is_active'] === true;
+});
 
-foreach ($products as $product) {
-    if ($product['id'] === $targetId) {
-        $foundProduct = $product;
-        break;
-    }
-}
-
-var_dump($foundProduct);
+var_dump(array_values($activeProducts));
