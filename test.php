@@ -1,9 +1,10 @@
 <?php
 
-$path = __DIR__ . '/../php-to-enterprise-crud/test.php';
+$json = '[{"id":1,"name":"Keyboard","price":12000}]';
+$products = json_decode($json, true);
 
-if (!file_exists($path)) {
-    echo "Storage file does not exist yet\n";
+if (!is_array($products)) {
+    throw new RuntimeException('Products JSON must be an array');
 }
 
-echo $path;
+echo($products);
