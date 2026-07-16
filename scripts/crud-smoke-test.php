@@ -1,6 +1,3 @@
-Создай scripts/crud-smoke-test.php, который вызывает create, find, update, delete и после каждого шага выводит результат через var_dump.
-
-
 <?php
 require_once __DIR__ . '/../src/products.php';
 

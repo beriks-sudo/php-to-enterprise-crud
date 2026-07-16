@@ -6,6 +6,16 @@ function productsStoragePath(): string {
 }
 
 function ensureProductsStorageExists(string $path): void {
+    $directory = dirname($path);
+
+    if (!is_dir($directory)) {
+        $created = mkdir($directory, 0777, true);
+
+        if (!$created && !is_dir($directory)) {
+            throw new RuntimeException('Cannot create products storage directory');
+        }
+    }
+
     if (file_exists($path)) {
         return;
     }
@@ -96,6 +106,14 @@ function validateProductPayload(array $payload): array {
 }
 
 function createProduct(array $products, array $payload): array {
+    $errors = validateProductPayload($payload);
+
+    if ($errors !== []) {
+        throw new RuntimeException(
+            'Invalid product payload: ' . implode(', ', $errors)
+        );
+    }
+
     $product = [
         'id' => getNextProductId($products),
         'name' => trim( (string) ($payload['name'] ?? '')),
@@ -112,20 +130,29 @@ function updateProduct(array $products, int $id, array $payload): array {
             continue;
         }
 
+        $updatedPayload = array_merge($product, $payload);
+        $errors = validateProductPayload($updatedPayload);
+
+        if ($errors !== []) {
+            throw new RuntimeException(
+                'Invalid product payload: ' . implode(', ', $errors)
+            );
+        }
+
         $products[$index]['name'] = trim(
             (string) (
-                $payload['name']
+                $updatedPayload['name']
                 ?? $product['name']
             )
         );
 
         $products[$index]['price'] = (int) (
-            $payload['price']
+            $updatedPayload['price']
             ?? $product['price']
         );
 
         $products[$index]['is_active'] = (bool) (
-            $payload['is_active']
+            $updatedPayload['is_active']
             ?? $product['is_active']
         );
 
@@ -145,7 +172,6 @@ function deleteProduct(array $products, int $id): array {
         }
         return array_values($products);
 }
-
 
 
 
