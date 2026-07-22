@@ -174,5 +174,14 @@ function deleteProduct(array $products, int $id): array {
 }
 
 
+function jsonResponse(array $payload, int $statusCode = 200): void
+{
+    http_response_code($statusCode);
+    header('Content-Type: application/json');
 
+    echo json_encode(
+        $payload,
+        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+    );
+}
 
