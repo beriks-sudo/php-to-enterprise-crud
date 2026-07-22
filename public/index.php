@@ -30,24 +30,24 @@ $id = isset($segments[1]) ? (int) $segments[1] : null;
 $storagePath = productsStoragePath();
 $products = loadProducts($storagePath);
 
-//Список товаров
+// Список товаров
 if ($method === 'GET' && $resource === 'products' && $id === null) {
     jsonResponse(['data' => $products]);
     return;
 }
 
+// Один товар
 if ($method === 'GET' && $resource === 'products' && $id !== null) {
-    jsonResponse(['data' => $products[$id] ?? null]);
+    $product = findProductById($products, $id);
+
+    if ($product === null) {
+        jsonResponse(['error' => 'Product not found'], 404);
+        return;
+    }
+
+    jsonResponse(['data' => $product]);
     return;
 }
-//Определенный товар
-$product = findProductById($products, $id);
-if ($product === null) {
-    jsonResponse(['error' => 'Product not found'], 404);
-    return;
-}
-jsonResponse(['data' => $product]);
-return;
 
 if ($method === 'POST' && $resource === 'products' && $id === null) {
     $payload = readJsonBody();
